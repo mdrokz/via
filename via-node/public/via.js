@@ -558,7 +558,15 @@ function download_all_region_data(type, file_extension) {
     if (file_extension !== 'csv' || file_extension !== 'json') {
       filename += '_' + type + '.' + file_extension;
     }
-    save_data_to_local_file(all_region_data_blob, filename);
+
+
+    all_region_data_blob.text().then(json => {
+      console.log({ fileName: filename, annotations: json })
+      fetch("http://localhost:3000/api/v2/annotations", { method: 'POST', body: JSON.stringify({ fileName: filename, annotations: json }) }).then(res => {
+        console.log(res);
+      })
+    });
+    // save_data_to_local_file(all_region_data_blob, filename);
   }.bind(this), function (err) {
     show_message('Failed to download data: [' + err + ']');
   }.bind(this));
