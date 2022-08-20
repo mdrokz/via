@@ -1,0 +1,9 @@
+{
+  "name": "via-node",
+  "version": "1.0.0",
+  "description": "API to receive annotations from VIA",
+  "main": "index.js",
+  "author": "mdrokz",
+  "license": "MIT",
+  "private": false
+}
